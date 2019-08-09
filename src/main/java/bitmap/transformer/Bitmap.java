@@ -64,6 +64,7 @@ public class Bitmap {
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         this.image.setRGB((width - 1) - x, y, this.image.getRGB(x, y));
+        lastRGBVal = this.image.getRGB(width - 1 - x, y);
       }
     }
     return lastRGBVal;
@@ -77,7 +78,7 @@ public class Bitmap {
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         this.image.setRGB(x, (height - 1) - y, this.image.getRGB(x, y));
-        lastRGBVal = this.image.getRGB(x, (height - 1) - y);
+        lastRGBVal = this.image.getRGB(x, height - 1 - y);
       }
     }
     return lastRGBVal;
