@@ -32,9 +32,7 @@
     * [NewCoffeeHorizontal.bmp](src/main/resources/NewCoffeeHorizontal.bmp)
     * [NewCoffeeVertical.bmp](src/main/resources/NewCoffeeVertical.bmp)
 * src/test
-  * [AppTest.java]("src/main/java/bitmap.transformer/AppTest.java")
   * [BitmapTest.java]("src/main/java/bitmap.transformer/BitmapTest.java")
-  * [UserInputTest.java]("src/main/java/bitmap.transformer/BitmapTest.java")
 
 <a name="methods"></a>
 ### Methods

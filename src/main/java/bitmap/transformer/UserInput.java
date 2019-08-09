@@ -3,7 +3,7 @@ package bitmap.transformer;
 import java.util.Scanner;
 
 public class UserInput {
-  public static final int EXIT = 0;
+  private static final int EXIT = 0;
 
   public static void userInput() {
     int choice;

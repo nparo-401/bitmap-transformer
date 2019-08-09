@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Bitmap {
   private String inputFilePath;
@@ -40,20 +41,23 @@ public class Bitmap {
     return true;
   }
 
-  public void purpleIze() {
-    Color myWhite = new Color(48,29,87);
-    int whiteRgb = myWhite.getRGB();
+  public int purpleIze() {
+    Color myPurple = new Color(48,29,87);
+    int purpleRGB = myPurple.getRGB();
     int height = this.image.getHeight();
     int width = this.image.getWidth();
 
     for (int h = 1; h < height; h++) {
       for (int w = 1; w < width; w++) {
-        this.image.setRGB(w, h, whiteRgb);
+        this.image.setRGB(w, h, purpleRGB);
       }
     }
+    System.out.println(purpleRGB);
+    return purpleRGB;
   }
 
-  public void imageFlipHorizontal() {
+  public int imageFlipHorizontal() {
+    int lastRGBVal = 0;
     int height = this.image.getHeight();
     int width = this.image.getWidth();
 
@@ -62,16 +66,20 @@ public class Bitmap {
         this.image.setRGB((width - 1) - x, y, this.image.getRGB(x, y));
       }
     }
+    return lastRGBVal;
   }
 
-  public void imageFlipVertical() {
+  public int imageFlipVertical() {
+    int lastRGBVal = 0;
     int height = this.image.getHeight();
     int width = this.image.getWidth();
 
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         this.image.setRGB(x, (height - 1) - y, this.image.getRGB(x, y));
+        lastRGBVal = this.image.getRGB(x, (height - 1) - y);
       }
     }
+    return lastRGBVal;
   }
 }
