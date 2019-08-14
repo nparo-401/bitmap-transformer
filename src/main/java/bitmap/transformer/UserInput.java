@@ -2,16 +2,23 @@ package bitmap.transformer;
 
 import java.util.Scanner;
 
-public class UserInput {
+class UserInput {
   private static final int EXIT = 0;
+  private static int transformerChoice;
+  private static String fileToManipulate;
+  private static String newFileName;
 
-  public static void userInput() {
-    int choice;
-    String userChoice = null;
+  private static Scanner scan = new Scanner(System.in);
 
+
+  static void userInput() {
+    System.out.println("Enter a Bitmap file to manipulate (must include '.bmp') or 0 to exit: ");
+    fileToManipulate = scan.nextLine();
+    if (fileToManipulate.equals("0")) return;
+    System.out.println("Enter a name for your new file (do not include a file extension): ");
+    newFileName = scan.nextLine();
     do {
-      Scanner scnr = new Scanner(System.in);
-      System.out.println("Transformation Choices: \n" +
+      System.out.println("Transformation Choice: \n" +
                              "---------------------------------\n" +
                              "0 : Exit\n" +
                              "1 : Purple-ize\n" +
@@ -19,58 +26,44 @@ public class UserInput {
                              "3 : Flip Vertical\n");
       System.out.println("Enter a transformation type (enter a number only): ");
       try {
-        userChoice = scnr.nextLine();
-        choice = Integer.parseInt(userChoice);
+        transformerChoice = Integer.parseInt(scan.nextLine());
         break;
       } catch (Exception e) {
         System.out.println("You did not enter a number, please try again\n");
       }
     } while (true);
     System.out.println();
-    manipulateBitmap(choice);
+    manipulateBitmap();
   }
 
-  public static void manipulateBitmap(int choice) {
-    if (choice == EXIT) {
-      return;
-    } else {
-      String inputFilePath = "./src/main/resources/Coffee.bmp";
-      String outputFilePath = "./src/main/resources/";
-      switch (choice) {
-        case 1:
-          String purpleFileName = "NewCoffeePurple.bmp";
-          Bitmap purpleImage = new Bitmap(inputFilePath,outputFilePath, purpleFileName);
-
-          purpleImage.readFile();
-          purpleImage.purpleIze();
-          purpleImage.saveFile();
-          System.out.println("NewCoffeePurple.bmp created, viewable upon exit\n");
-          break;
-        case 2:
-          String horizontalFileName = "NewCoffeeHorizontal.bmp";
-          Bitmap horizontalImage = new Bitmap(inputFilePath,outputFilePath, horizontalFileName);
-
-          horizontalImage.readFile();
-          horizontalImage.imageFlipHorizontal();
-          horizontalImage.saveFile();
-          System.out.println("NewCoffeeHorizontal.bmp created, viewable upon exit\n");
-
-          break;
-        case 3:
-          String verticalFileName = "NewCoffeeVertical.bmp";
-          Bitmap verticalImage = new Bitmap(inputFilePath,outputFilePath, verticalFileName);
-
-          verticalImage.readFile();
-          verticalImage.imageFlipVertical();
-          verticalImage.saveFile();
-          System.out.println("NewCoffeeVertical.bmp created, viewable upon exit\n");
-
-          break;
-        default:
-          System.out.println("\nNot a correct option\n");
-          break;
+  private static void manipulateBitmap() {
+    if (transformerChoice == EXIT) return;
+    else {
+      if (transformerChoice == 1 || transformerChoice == 2 || transformerChoice == 3) {
+        setBitmapClass();
       }
+      else System.out.println("\nNot a correct option\n");
     }
     userInput();
+  }
+
+  private static void setBitmapClass() {
+    String imageFilePath = "./src/main/resources/" + fileToManipulate;
+    String newFilePath = "./src/main/resources/";
+    String newFile = newFileName + ".bmp";
+
+    Bitmap newImage = new Bitmap(imageFilePath, newFilePath, newFile);
+    newImage.readFile();
+
+    if (transformerChoice == 1) {
+      newImage.purpleIze();
+    } else if (transformerChoice == 2) {
+      newImage.imageFlipHorizontal();
+    } else {
+      newImage.imageFlipVertical();
+    }
+
+    newImage.saveFile();
+    System.out.println(String.format("%s created, viewable upon exit\n", newFileName));
   }
 }

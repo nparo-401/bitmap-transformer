@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Bitmap {
   private String inputFilePath;
@@ -52,7 +51,6 @@ public class Bitmap {
         this.image.setRGB(w, h, purpleRGB);
       }
     }
-    System.out.println(purpleRGB);
     return purpleRGB;
   }
 
