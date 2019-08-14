@@ -8,13 +8,13 @@ class UserInput {
   private static String fileToManipulate;
   private static String newFileName;
 
-  static Scanner scan = new Scanner(System.in);
+  private static Scanner scan = new Scanner(System.in);
 
 
   static void userInput() {
     System.out.println("Enter a Bitmap file to manipulate (must include '.bmp') or 0 to exit: ");
     fileToManipulate = scan.nextLine();
-    if (fileToManipulate == "0") return;
+    if (fileToManipulate.equals("0")) return;
     System.out.println("Enter a name for your new file (do not include a file extension): ");
     newFileName = scan.nextLine();
     do {
@@ -39,9 +39,9 @@ class UserInput {
   private static void manipulateBitmap() {
     if (transformerChoice == EXIT) return;
     else {
-      if (transformerChoice == 1) setBitmapClass();
-      else if (transformerChoice == 2) setBitmapClass();
-      else if (transformerChoice ==3) setBitmapClass();
+      if (transformerChoice == 1 || transformerChoice == 2 || transformerChoice == 3) {
+        setBitmapClass();
+      }
       else System.out.println("\nNot a correct option\n");
     }
     userInput();
@@ -55,9 +55,13 @@ class UserInput {
     Bitmap newImage = new Bitmap(imageFilePath, newFilePath, newFile);
     newImage.readFile();
 
-    if (transformerChoice == 1) newImage.purpleIze();
-    else if (transformerChoice == 2) newImage.imageFlipHorizontal();
-    else newImage.imageFlipVertical();
+    if (transformerChoice == 1) {
+      newImage.purpleIze();
+    } else if (transformerChoice == 2) {
+      newImage.imageFlipHorizontal();
+    } else {
+      newImage.imageFlipVertical();
+    }
 
     newImage.saveFile();
     System.out.println(String.format("%s created, viewable upon exit\n", newFileName));
