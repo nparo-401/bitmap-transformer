@@ -25,7 +25,7 @@
   * /java
     * [App.java](src/main/java/bitmap/transformer/App.java)
     * [Bitmap.java](src/main/java/bitmap/transformer/Bitmap.java)
-    * [UserInput.java](src/main/java/bitmap.transformer/UserInput.java)
+    * [UserInput.java](src/main/java/bitmap/transformer/UserInput.java)
   * /resources
     * [Coffee.bmp](src/main/resources/Coffee.bmp)
     * [NewCoffeePurple.bmp](src/main/resources/NewCoffeePurple.bmp)
