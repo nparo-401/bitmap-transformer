@@ -62,7 +62,14 @@
   * manipulateBitmap(int choice)
     * Checks if user choice is the exit code - if so, ends the
       application
-    * Otherwise: begins initializing a new Bitmap class
-      * Uses a switch statement to give the class the correct file name
-        and transformation calls
+    * OtherwiseL uses a switch case based on the user input to call the
+      setBitmapClass with the correct new filename
+  * setBitmapClass(String newFileName)
+    * Takes in the new file name and initializes a new Bitmap class
+    * Calls:
+      * Bitmap.readFile()
+      * Bitmap.<transformation associated with filename>()
+      * Bitmap.saveFile()
+    * Prints a message for user to know file will be viewable when
+      application closes
     
